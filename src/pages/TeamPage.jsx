@@ -13,7 +13,7 @@ const TeamPage = () => {
   }, []);
 
   useEffect(() => {
-    fetch('http://127.0.0.1:5000/api/team')
+    fetch('/api/team')
       .then(res => res.json())
       .then(data => {
         if (data.status === 'success' && data.data && data.data.length > 0) {
