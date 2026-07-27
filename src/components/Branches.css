@@ -1,0 +1,112 @@
+.branches-section {
+  padding: 80px 0;
+  background-color: var(--color-pearl);
+  text-align: center;
+  overflow: hidden;
+}
+
+.branches-title {
+  font-family: var(--font-serif);
+  color: var(--color-navy);
+  font-size: 2.5rem;
+  margin-bottom: 60px;
+}
+
+.carousel-wrapper {
+  display: flex;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+/* Fading edges effect to match premium styling */
+.carousel-wrapper::before,
+.carousel-wrapper::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 150px;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none; /* Let clicks pass through */
+}
+
+.carousel-wrapper::before {
+  left: 0;
+  background: linear-gradient(to right, var(--color-pearl) 0%, transparent 100%);
+}
+
+.carousel-wrapper::after {
+  right: 0;
+  background: linear-gradient(to left, var(--color-pearl) 0%, transparent 100%);
+}
+
+.carousel-track {
+  display: flex;
+  align-items: center;
+  gap: 80px;
+  /* 30 seconds for a full loop, linear for smooth constant speed */
+  animation: scroll-carousel 35s linear infinite;
+}
+
+/* Pause on hover */
+.carousel-track:hover {
+  animation-play-state: paused;
+}
+
+.carousel-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0; /* Prevents logos from shrinking */
+}
+
+.branch-logo {
+  height: 80px;
+  max-width: 250px;
+  object-fit: contain;
+  /* Apply grayscale and opacity for premium aesthetic */
+  filter: grayscale(100%);
+  opacity: 0.7;
+  transition: filter 0.4s ease, opacity 0.4s ease, transform 0.4s ease;
+}
+
+.branch-logo:hover {
+  filter: grayscale(0%);
+  opacity: 1;
+  transform: scale(1.05);
+}
+
+@keyframes scroll-carousel {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    /* We translate exactly 50% of the entire track's width.
+       Since the track contains 2 identical halves (3 sets + 3 sets),
+       translating 50% makes it loop perfectly seamlessly.
+       gap adjustment: -40px per half if necessary, but translating by -50% 
+       of the flex container includes gaps. */
+    transform: translateX(-50%);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .branches-title {
+    font-size: 2rem;
+  }
+  
+  .branch-logo {
+    height: 60px;
+  }
+  
+  .carousel-track {
+    gap: 40px;
+  }
+  
+  .carousel-wrapper::before,
+  .carousel-wrapper::after {
+    width: 80px;
+  }
+}

@@ -1,0 +1,64 @@
+.carousel-container {
+  overflow: hidden;
+  padding: 40px 0;
+  background-color: transparent;
+  border-top: 1px solid rgba(15, 23, 42, 0.05);
+  position: relative;
+  width: 100%;
+}
+
+.carousel-container::before,
+.carousel-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 200px;
+  height: 100%;
+  z-index: 2;
+}
+
+.carousel-container::before {
+  left: 0;
+  background: linear-gradient(to right, var(--color-pearl) 0%, transparent 100%);
+}
+
+.carousel-container::after {
+  right: 0;
+  background: linear-gradient(to left, var(--color-pearl) 0%, transparent 100%);
+}
+
+.carousel-track {
+  display: flex;
+  align-items: center;
+  width: calc(300px * 12); /* 4 logos * 3 repeats */
+  animation: scroll 30s linear infinite;
+}
+
+.carousel-logo {
+  width: 300px;
+  flex-shrink: 0;
+  text-align: center;
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  color: var(--color-navy);
+  opacity: 0.6;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  transition: opacity 0.3s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.carousel-logo:hover {
+  opacity: 1;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-300px * 4)); /* Move exactly one set of 4 logos */
+  }
+}
